@@ -1,0 +1,27 @@
+FROM golang:1.17.1 AS backend
+
+# make the 'app' folder the current working directory
+WORKDIR /app
+RUN mkdir /builds
+
+# Copy module files and build script
+ADD go.mod .
+ADD go.sum .
+ADD DeimosC2_Package.py .
+
+# install project dependencies
+RUN go mod download
+
+# Copy Deimos files
+ADD /agents .
+ADD /archives .
+ADD /droppers .
+ADD /lib .
+ADD /modules .
+ADD /resources .
+
+# build app for production with minification
+# RUN npm run build
+
+CMD [ "bash" ]
+

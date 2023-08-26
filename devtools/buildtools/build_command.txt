@@ -1,0 +1,3 @@
+
+
+go build --ldflags="-s -w" -trimpath -o /builds/test2.exe ./c2/main.g0
